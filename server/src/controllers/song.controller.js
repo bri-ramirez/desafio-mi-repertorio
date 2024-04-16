@@ -47,9 +47,6 @@ export const getById = async (req, res) => {
 };
 
 export const updateById = async (req, res) => {
-
-  console.log('UODATE');
-
   try {
     validateSong(req);
 
