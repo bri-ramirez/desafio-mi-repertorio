@@ -72,7 +72,15 @@ export const updateById = async (req, res) => {
 
 export const deleteById = async (req, res) => {
   try {
-    await SongService.deleteById(req.params.id);
+
+    if (!req.query.id) {
+      errorMessage("El campo 'id' es requerido");
+      return res.status(400).json({ message: "El campo 'id' es requerido" });
+    }
+
+    const id = req.query.id;
+
+    await SongService.deleteById(id);
     return res.status(200).json({ message: 'Canción eliminada!' });
   } catch (error) {
     errorMessage(error.message);
